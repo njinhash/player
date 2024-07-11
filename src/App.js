@@ -257,14 +257,16 @@ const MusicPlayer = () => {
     <div className="container">
       <div className="player">
         <div className="player-bar">
-          <div className="parallel-lines">
-            <div></div>
-            <div></div>
+          <div className="music-note">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+            </svg>
           </div>
           <h1 className="fcc-title">MP3</h1>
-          <div className="parallel-lines">
-            <div></div>
-            <div></div>
+          <div className="music-note">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+            </svg>
           </div>
         </div>
         <div className="player-content">
@@ -331,7 +333,9 @@ const MusicPlayer = () => {
                   <path fillRule="evenodd" d="M17 6a1 1 0 1 0-2 0v4L8.6 5.2A1 1 0 0 0 7 6v12a1 1 0 0 0 1.6.8L15 14v4a1 1 0 1 0 2 0V6Z" clipRule="evenodd"/>
                 </svg>}
               </button>
-              <button id="shuffle" className="shuffle" aria-label="Shuffle" onClick={shuffle}>
+           
+
+            <button id="shuffle" className="shuffle" aria-label="Shuffle" onClick={shuffle}>
                 {<svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.484 9.166 15 7h5m0 0-3-3m3 3-3 3M4 17h4l1.577-2.253M4 7h4l7 10h5m0 0-3 3m3-3-3-3"/>
                 </svg>}
@@ -346,13 +350,35 @@ const MusicPlayer = () => {
       <div className="playlist">
         <div className="playlist-bar">
           <div className="parallel-lines">
-            <div></div>
-            <div></div>
+          <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="book-icon"
+    >
+      <path
+        d="M6 2H18C19.1 2 20 2.9 20 4V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V4C4 2.9 4.9 2 6 2ZM6 4V20H18V4H6ZM8 6H16V8H8V6ZM8 10H16V12H8V10ZM8 14H13V16H8V14Z"
+        fill="currentColor"
+      />
+    </svg>
           </div>
           <h2 className="playlist-title" id="playlist">Playlist</h2>
           <div className="parallel-lines">
-            <div></div>
-            <div></div>
+          <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="book-icon"
+    >
+      <path
+        d="M6 2H18C19.1 2 20 2.9 20 4V20C20 21.1 19.1 22 18 22H6C4.9 22 4 21.1 4 20V4C4 2.9 4.9 2 6 2ZM6 4V20H18V4H6ZM8 6H16V8H8V6ZM8 10H16V12H8V10ZM8 14H13V16H8V14Z"
+        fill="currentColor"
+      />
+    </svg>
           </div>
         </div>
         <ul id="playlist-songs">
