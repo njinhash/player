@@ -1,9 +1,17 @@
 /* App.css */
 
+:root {
+  --gradient-animation: linear-gradient(45deg, rgba(0, 0, 255, 1), rgba(0, 128, 0, 1), rgb(255,0,0), rgb(255,255,0), rgba(0, 0, 255, 1));
+  --player-gradient: linear-gradient(45deg, rgba(173, 216, 230, 1), rgba(144, 238, 144, 1), rgb(255, 182, 193), rgb(255, 255, 224), rgba(173, 216, 230, 1));
+  --highlight-gradient: linear-gradient(45deg, rgb(255,255,0), rgba(144, 238, 144, 1), rgb(255, 182, 193), rgb(255, 255, 224), rgb(255,255,0));
+  --dark-blue: #0F2C56;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(45deg, rgba(0, 0, 255, 1), rgba(0, 128, 0, 1), rgb(255,0,0), rgb(255,255,0), rgba(0, 0, 255, 1));
+  background: var(--gradient-animation);
   background-size: 400% 400%;
   animation: gradientAnimation 10s ease infinite;
 }
@@ -21,25 +29,19 @@ body {
   margin: 20px;
 }
 
-.player {
-  background: linear-gradient(45deg, 
-  rgba(173, 216, 230, 1), /* light blue */
-  rgba(144, 238, 144, 1), /* light green */
-  rgb(255, 182, 193),     /* light pink */
-  rgb(255, 255, 224),     /* light yellow */
-  rgba(173, 216, 230, 1)  /* light blue */
-);
+.player, .playlist {
+  background: var(--player-gradient);
   background-size: 400% 400%;
   animation: gradientAnimation 10s ease infinite;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow);
   overflow: hidden;
   width: 300px;
   margin-bottom: 20px;
 }
 
-.player-bar {
-  background-color: #0F2C56;
+.player-bar, .playlist-bar {
+  background-color: var(--dark-blue);
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -47,7 +49,7 @@ body {
   padding: 10px;
 }
 
-.fcc-title {
+.fcc-title, .playlist-title {
   font-size: 18px;
   margin: 0;
 }
@@ -56,13 +58,7 @@ body {
   width: 20px;
   height: 2px;
   margin: 2px 0;
-  background: linear-gradient(45deg, 
-  rgba(173, 216, 230, 1), /* light blue */
-  rgba(144, 238, 144, 1), /* light green */
-  rgb(255, 182, 193),     /* light pink */
-  rgb(255, 255, 224),     /* light yellow */
-  rgba(173, 216, 230, 1)  /* light blue */
-);
+  background: var(--player-gradient);
   background-size: 400% 400%;
   animation: gradientAnimation 10s ease infinite;
 }
@@ -104,35 +100,8 @@ body {
 }
 
 .playlist {
-  background: linear-gradient(45deg, 
-  rgba(173, 216, 230, 1), /* light blue */
-  rgba(144, 238, 144, 1), /* light green */
-  rgb(255, 182, 193),     /* light pink */
-  rgb(255, 255, 224),     /* light yellow */
-  rgba(173, 216, 230, 1)  /* light blue */
-);
-  background-size: 400% 400%;
-  animation: gradientAnimation 10s ease infinite;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  width: 300px;
   max-height: 400px; /* Adjust this value as needed */
   overflow-y: auto; /* Add this line to enable vertical scrolling */
-}
-
-.playlist-bar {
-  background-color: #0F2C56;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-}
-
-.playlist-title {
-  font-size: 18px;
-  margin: 0;
 }
 
 #playlist-songs {
@@ -172,13 +141,7 @@ body {
 }
 
 .highlight {
-  background: linear-gradient(45deg, 
-  rgb(255,255,0), /* light blue */
-  rgba(144, 238, 144, 1), /* light green */
-  rgb(255, 182, 193),     /* light pink */
-  rgb(255, 255, 224),     /* light yellow */
-  rgb(255,255,0)  /* light blue */
-);
+  background: var(--highlight-gradient);
   background-size: 400% 400%;
   animation: gradientAnimation 10s ease infinite;
 }
