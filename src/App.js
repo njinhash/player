@@ -73,7 +73,6 @@ const allSongs = [
     src: "https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3",
   },
 ];
-
 const MusicPlayer = () => {
   const [userData, setUserData] = useState({
     songs: [...allSongs],
@@ -124,9 +123,7 @@ const MusicPlayer = () => {
   const playSong = useCallback((id) => {
     const song = userData.songs.find((song) => song.id === id);
 
-    // Pause the current song if it's playing
     audioRef.current.pause();
-
     audioRef.current.src = song.src;
     audioRef.current.title = song.title;
 
@@ -141,11 +138,27 @@ const MusicPlayer = () => {
     audioRef.current.play();
   }, [userData.songs, userData.currentSong, userData.songCurrentTime]);
 
-  useEffect(() => {
+  const deleteSong = useCallback((id) => {
+    if (userData.currentSong?.id === id) {
+      setUserData(prevState => ({
+        ...prevState,
+        currentSong: null,
+        songCurrentTime: 0,
+      }));
+      setIsPlaying(false);
+      setPlayerDisplay();
+    }
+
+    const updatedSongs = userData.songs.filter((song) => song.id !== id);
+    setUserData(prevState => ({ ...prevState, songs: updatedSongs }));
     highlightCurrentSong();
-    setPlayerDisplay();
     setPlayButtonAccessibleText();
-  }, [userData.currentSong, highlightCurrentSong, setPlayerDisplay, setPlayButtonAccessibleText]);
+
+    if (updatedSongs.length === 0) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    }
+  }, [userData.currentSong, userData.songs, highlightCurrentSong, setPlayButtonAccessibleText, setPlayerDisplay]);
 
   const renderSongs = useCallback((songs) => {
     return songs.map((song) => (
@@ -162,11 +175,17 @@ const MusicPlayer = () => {
         </button>
       </li>
     ));
-  }, [playSong]);
+  }, [playSong, deleteSong]);
 
   const sortSongs = useCallback(() => {
     return [...userData.songs].sort((a, b) => a.title.localeCompare(b.title));
   }, [userData.songs]);
+
+  useEffect(() => {
+    highlightCurrentSong();
+    setPlayerDisplay();
+    setPlayButtonAccessibleText();
+  }, [userData.currentSong, highlightCurrentSong, setPlayerDisplay, setPlayButtonAccessibleText]);
 
   useEffect(() => {
     renderSongs(sortSongs());
@@ -184,7 +203,7 @@ const MusicPlayer = () => {
       playSong(userData.songs[0].id);
     } else {
       const currentSongIndex = getCurrentSongIndex();
-      const nextSong = userData.songs[currentSongIndex + 1] || userData.songs[0]; // Loop back to the first song
+      const nextSong = userData.songs[currentSongIndex + 1] || userData.songs[0];
       playSong(nextSong.id);
     }
   }, [userData.songs, userData.currentSong, getCurrentSongIndex, playSong]);
@@ -209,29 +228,6 @@ const MusicPlayer = () => {
     setPlayerDisplay();
     setPlayButtonAccessibleText();
   };
-
-  const deleteSong = useCallback((id) => {
-    if (userData.currentSong?.id === id) {
-      setUserData(prevState => ({
-        ...prevState,
-        currentSong: null,
-        songCurrentTime: 0,
-      }));
-      setIsPlaying(false);
-      setPlayerDisplay();
-    }
-
-    const updatedSongs = userData.songs.filter((song) => song.id !== id);
-    setUserData(prevState => ({ ...prevState, songs: updatedSongs }));
-    renderSongs(updatedSongs);
-    highlightCurrentSong();
-    setPlayButtonAccessibleText();
-
-    if (updatedSongs.length === 0) {
-      audioRef.current.pause(); // Stop the audio
-      setIsPlaying(false); // Update the playing state
-    }
-  }, [userData.currentSong, userData.songs, renderSongs, highlightCurrentSong, setPlayButtonAccessibleText, setPlayerDisplay]);
 
   const resetPlaylist = () => {
     setUserData({
@@ -271,41 +267,20 @@ const MusicPlayer = () => {
         </div>
         <div className="player-content">
           <div id="player-album-art">
-          
-          <svg
-  width="100"
-  height="100"
-  viewBox="0 0 100 100"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <defs>
-    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="rgba(0, 0, 255, 1)" stop-opacity="1">
-        <animate
-          attributeName="stop-color"
-          values="rgba(0, 0, 255, 1);rgba(0, 128, 0, 1);rgb(255,0,0);rgb(255,255,0);rgba(0, 0, 255, 1)"
-          dur="10s"
-          repeatCount="indefinite"
-        />
-      </stop>
-      <stop offset="100%" stop-color="rgb(255,0,0)" stop-opacity="1">
-        <animate
-          attributeName="stop-color"
-          values="rgb(255,0,0);rgb(255,255,0);rgba(0, 0, 255, 1);rgba(0, 128, 0, 1);rgb(255,0,0)"
-          dur="10s"
-          repeatCount="indefinite"
-        />
-      </stop>
-    </linearGradient>
-  </defs>
-  <circle cx="50" cy="50" r="50" fill="url(#grad1)" />
-  <text x="50%" y="50%" text-anchor="middle" fill="#fff" dy=".3em">
-  MYTUNEZ
-  </text>
-</svg>
-
-
-
+            <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(0, 0, 255, 1)" stop-opacity="1">
+                    <animate attributeName="stop-color" values="rgba(0, 0, 255, 1);rgba(0, 128, 0, 1);rgb(255,0,0);rgb(255,255,0);rgba(0, 0, 255, 1)" dur="10s" repeatCount="indefinite"/>
+                  </stop>
+                  <stop offset="100%" stop-color="rgb(255,0,0)" stop-opacity="1">
+                    <animate attributeName="stop-color" values="rgb(255,0,0);rgb(255,255,0);rgba(0, 0, 255, 1);rgba(0, 128, 0, 1);rgb(255,0,0)" dur="10s" repeatCount="indefinite"/>
+                  </stop>
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="50" r="50" fill="url(#grad1)" />
+              <text x="50%" y="50%" text-anchor="middle" fill="#fff" dy=".3em">MYTUNEZ</text>
+            </svg>
           </div>
           <div className="player-display">
             <div className="player-display-song-artist">
@@ -333,7 +308,6 @@ const MusicPlayer = () => {
                   <path fillRule="evenodd" d="M17 6a1 1 0 1 0-2 0v4L8.6 5.2A1 1 0 0 0 7 6v12a1 1 0 0 0 1.6.8L15 14v4a1 1 0 1 0 2 0V6Z" clipRule="evenodd"/>
                 </svg>}
               </button>
-           
 
             <button id="shuffle" className="shuffle" aria-label="Shuffle" onClick={shuffle}>
                 {<svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
