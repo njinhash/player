@@ -123,6 +123,10 @@ const MusicPlayer = () => {
 
   const playSong = useCallback((id) => {
     const song = userData.songs.find((song) => song.id === id);
+
+    // Pause the current song if it's playing
+    audioRef.current.pause();
+
     audioRef.current.src = song.src;
     audioRef.current.title = song.title;
 
@@ -134,11 +138,14 @@ const MusicPlayer = () => {
     setUserData(prevState => ({ ...prevState, currentSong: song }));
     setIsPlaying(true);
 
+    audioRef.current.play();
+  }, [userData.songs, userData.currentSong, userData.songCurrentTime]);
+
+  useEffect(() => {
     highlightCurrentSong();
     setPlayerDisplay();
     setPlayButtonAccessibleText();
-    audioRef.current.play();
-  }, [userData.songs, userData.currentSong, userData.songCurrentTime, highlightCurrentSong, setPlayerDisplay, setPlayButtonAccessibleText]);
+  }, [userData.currentSong, highlightCurrentSong, setPlayerDisplay, setPlayButtonAccessibleText]);
 
   const renderSongs = useCallback((songs) => {
     return songs.map((song) => (
@@ -340,7 +347,6 @@ const MusicPlayer = () => {
         <div className="playlist-bar">
           <div className="parallel-lines">
             <div></div>
-
             <div></div>
           </div>
           <h2 className="playlist-title" id="playlist">Playlist</h2>
