@@ -1,38 +1,155 @@
-.App {
-  text-align: center;
+/* App.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.player {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  margin-bottom: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.player-bar {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.fcc-title {
+  font-size: 18px;
+  margin: 0;
+}
+
+.parallel-lines div {
+  width: 20px;
+  height: 2px;
+  background-color: #fff;
+  margin: 2px 0;
+}
+
+.player-content {
+  padding: 20px;
+  text-align: center;
+}
+
+#player-album-art img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.player-display {
+  margin-top: 10px;
+}
+
+.player-display-song-artist p {
+  margin: 5px 0;
+}
+
+.player-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.player-buttons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.player-buttons button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.playlist {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+}
+
+.playlist-bar {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.playlist-title {
+  font-size: 18px;
+  margin: 0;
+}
+
+#playlist-songs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.playlist-song {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.playlist-song-info {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+}
+
+.playlist-song-title,
+.playlist-song-artist,
+.playlist-song-duration {
+  display: block;
+}
+
+.playlist-song-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.highlight {
+  background-color: #e0e0e0;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+    padding: 10px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .player,
+  .playlist {
+    width: 100%;
   }
 }
