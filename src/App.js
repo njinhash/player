@@ -54,7 +54,7 @@ const allSongs = [
   {
     id: 7,
     title: "ateapill.ogg",
-    artist: "Quincy Larson",
+    artist: "Lawrence Strickland",
     duration: "0:17",
     src: "https://commondatastorage.googleapis.com/codeskulptor-demos/pyman_assets/ateapill.ogg",
   },
@@ -177,10 +177,11 @@ const MusicPlayer = () => {
       playSong(userData.songs[0].id);
     } else {
       const currentSongIndex = getCurrentSongIndex();
-      const nextSong = userData.songs[currentSongIndex + 1];
-      if (nextSong) playSong(nextSong.id);
+      const nextSong = userData.songs[currentSongIndex + 1] || userData.songs[0]; // Loop back to the first song
+      playSong(nextSong.id);
     }
   }, [userData.songs, userData.currentSong, getCurrentSongIndex, playSong]);
+  
 
   const playPreviousSong = () => {
     if (userData.currentSong === null) return;
@@ -253,7 +254,7 @@ const MusicPlayer = () => {
             <div></div>
             <div></div>
           </div>
-          <h1 className="fcc-title">freeCodeCamp</h1>
+          <h1 className="fcc-title">MP3</h1>
           <div className="parallel-lines">
             <div></div>
             <div></div>
@@ -261,10 +262,41 @@ const MusicPlayer = () => {
         </div>
         <div className="player-content">
           <div id="player-album-art">
-            <img
-              src="https://cdn.freecodecamp.org/curriculum/js-music-player/quincy-larson-album-art.jpg"
-              alt="song cover art"
-            />
+          
+          <svg
+  width="100"
+  height="100"
+  viewBox="0 0 100 100"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(0, 0, 255, 1)" stop-opacity="1">
+        <animate
+          attributeName="stop-color"
+          values="rgba(0, 0, 255, 1);rgba(0, 128, 0, 1);rgb(255,0,0);rgb(255,255,0);rgba(0, 0, 255, 1)"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+      </stop>
+      <stop offset="100%" stop-color="rgb(255,0,0)" stop-opacity="1">
+        <animate
+          attributeName="stop-color"
+          values="rgb(255,0,0);rgb(255,255,0);rgba(0, 0, 255, 1);rgba(0, 128, 0, 1);rgb(255,0,0)"
+          dur="10s"
+          repeatCount="indefinite"
+        />
+      </stop>
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="50" fill="url(#grad1)" />
+  <text x="50%" y="50%" text-anchor="middle" fill="#fff" dy=".3em">
+  MYTUNEZ
+  </text>
+</svg>
+
+
+
           </div>
           <div className="player-display">
             <div className="player-display-song-artist">

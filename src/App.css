@@ -1,11 +1,17 @@
 /* App.css */
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  color: #333;
   margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(45deg, rgba(0, 0, 255, 1), rgba(0, 128, 0, 1), rgb(255,0,0), rgb(255,255,0), rgba(0, 0, 255, 1));
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .container {
@@ -16,7 +22,15 @@ body {
 }
 
 .player {
-  background-color: #fff;
+  background: linear-gradient(45deg, 
+  rgba(173, 216, 230, 1), /* light blue */
+  rgba(144, 238, 144, 1), /* light green */
+  rgb(255, 182, 193),     /* light pink */
+  rgb(255, 255, 224),     /* light yellow */
+  rgba(173, 216, 230, 1)  /* light blue */
+);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -25,7 +39,7 @@ body {
 }
 
 .player-bar {
-  background-color: #333;
+  background-color: #0F2C56;
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -41,8 +55,16 @@ body {
 .parallel-lines div {
   width: 20px;
   height: 2px;
-  background-color: #fff;
   margin: 2px 0;
+  background: linear-gradient(45deg, 
+  rgba(173, 216, 230, 1), /* light blue */
+  rgba(144, 238, 144, 1), /* light green */
+  rgb(255, 182, 193),     /* light pink */
+  rgb(255, 255, 224),     /* light yellow */
+  rgba(173, 216, 230, 1)  /* light blue */
+);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
 }
 
 .player-content {
@@ -82,15 +104,25 @@ body {
 }
 
 .playlist {
-  background-color: #fff;
+  background: linear-gradient(45deg, 
+  rgba(173, 216, 230, 1), /* light blue */
+  rgba(144, 238, 144, 1), /* light green */
+  rgb(255, 182, 193),     /* light pink */
+  rgb(255, 255, 224),     /* light yellow */
+  rgba(173, 216, 230, 1)  /* light blue */
+);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   width: 300px;
+  max-height: 400px; /* Adjust this value as needed */
+  overflow-y: auto; /* Add this line to enable vertical scrolling */
 }
 
 .playlist-bar {
-  background-color: #333;
+  background-color: #0F2C56;
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -142,7 +174,7 @@ body {
   background-color: #e0e0e0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
   .container {
     width: 100%;
     padding: 10px;
