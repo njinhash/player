@@ -181,7 +181,6 @@ const MusicPlayer = () => {
       playSong(nextSong.id);
     }
   }, [userData.songs, userData.currentSong, getCurrentSongIndex, playSong]);
-  
 
   const playPreviousSong = () => {
     if (userData.currentSong === null) return;
@@ -222,7 +221,8 @@ const MusicPlayer = () => {
     setPlayButtonAccessibleText();
 
     if (updatedSongs.length === 0) {
-      resetPlaylist();
+      audioRef.current.pause(); // Stop the audio
+      setIsPlaying(false); // Update the playing state
     }
   }, [userData.currentSong, userData.songs, renderSongs, highlightCurrentSong, setPlayButtonAccessibleText, setPlayerDisplay]);
 
@@ -340,6 +340,7 @@ const MusicPlayer = () => {
         <div className="playlist-bar">
           <div className="parallel-lines">
             <div></div>
+
             <div></div>
           </div>
           <h2 className="playlist-title" id="playlist">Playlist</h2>
