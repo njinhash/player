@@ -1,9 +1,9 @@
 /* App.css */
 
 :root {
-  --gradient-animation: linear-gradient(45deg, rgba(0, 0, 255, 1), rgba(0, 128, 0, 1), rgb(255,0,0), rgb(255,255,0), rgba(0, 0, 255, 1));
-  --player-gradient: linear-gradient(45deg, rgba(173, 216, 230, 1), rgba(144, 238, 144, 1), rgb(255, 182, 193), rgb(255, 255, 224), rgba(173, 216, 230, 1));
-  --highlight-gradient: linear-gradient(45deg, rgb(255,255,0), rgba(144, 238, 144, 1), rgb(255, 182, 193), rgb(255, 255, 224), rgb(255,255,0));
+  --gradient-animation: linear-gradient(45deg, rgba(0, 0, 255, 1),rgba(80, 201, 195, 1), rgba(0, 128, 0, 1), rgb(255,0,0), rgb(255,255,0),rgba(80, 201, 195, 1), rgba(0, 0, 255, 1));
+  --player-gradient: linear-gradient(45deg, rgba(173, 216, 230, 1), rgb(255, 255, 224), rgba(173, 216, 230, 1),rgb(255, 255, 224));
+  --highlight-gradient: linear-gradient(45deg,rgba(80, 201, 195, 1), rgb(255,255,0), rgba(144, 238, 144, 1), rgb(255, 255, 224), rgb(255,255,0), rgba(150, 222, 218, 1));
   --dark-blue: #0F2C56;
   --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
